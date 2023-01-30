@@ -23,7 +23,7 @@ spec:
         app.kubernetes.io/instance: test-component-qmgo
     spec:
       containers:
-      - image: quay.io/redhat-appstudio-qe/test-images:6267db92b2254d109d579eea9a3e09d1
+      - image: quay.io/redhat-appstudio-qe/test-images@sha256:ef485e911dbfa0065d2720de920f253a8a9dafb337793ea1cd78f2b68dcc2034
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
