@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: test-component-qmgo
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: test-component-qmgo
+    app.kubernetes.io/part-of: test-app-rdjj
+  name: test-component-qmgo
+  namespace: build-e2e-hacbs-qgst
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: test-component-qmgo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: test-component-qmgo
+    spec:
+      containers:
+      - image: quay.io/redhat-appstudio-qe/test-images:6267db92b2254d109d579eea9a3e09d1
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        name: container-image
+        ports:
+        - containerPort: 8081
+        readinessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          tcpSocket:
+            port: 8081
+        resources: {}
+status: {}
